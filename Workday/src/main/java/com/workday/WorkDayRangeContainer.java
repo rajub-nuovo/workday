@@ -11,9 +11,10 @@ import java.util.TreeMap;
  */
 public class WorkDayRangeContainer implements RangeContainer {
 
-    private TreeMap<Long, Short> rangeContainerIndex = new TreeMap<>();
+    private TreeMap<Long, Short> rangeContainerIndex = null;
 
     public WorkDayRangeContainer(long[] data) {
+        rangeContainerIndex = new TreeMap<Long, Short>();
         for (short i = 0; i < data.length; i++) {
             rangeContainerIndex.put(data[i], i);
         }
@@ -22,7 +23,8 @@ public class WorkDayRangeContainer implements RangeContainer {
     @Override
     public Ids findIdsInRange(long fromValue, long toValue, boolean fromInclusive, boolean toInclusive) {
         NavigableMap<Long, Short> idsInRange = rangeContainerIndex.subMap(fromValue, fromInclusive, toValue, toInclusive);
-        List<Short> idList = new ArrayList<>(idsInRange.values());
+        
+        List<Short> idList = new ArrayList<Short>(idsInRange.values());
         Collections.sort(idList);
         return new WorkDayIds(Collections.enumeration(idList));
     }
