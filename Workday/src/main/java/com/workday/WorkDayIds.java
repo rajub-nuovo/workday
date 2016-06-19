@@ -5,9 +5,9 @@ import java.util.Enumeration;
 /**
  * rbandaru - Enumeration returned by the RangeContainer with the sorted list of Ids.
  */
-public class WorkDayIds implements Ids {
+public final class WorkDayIds implements Ids {
 
-    private Enumeration<Short> idEnumerations;
+    private final Enumeration<Short> idEnumerations;
 
     public WorkDayIds(Enumeration<Short> enumeration) {
         this.idEnumerations = enumeration;
